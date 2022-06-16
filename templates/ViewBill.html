@@ -1,0 +1,67 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Doctors List</h2>
+
+<table>
+  <tr>
+      <th>Bill No: </th>
+    <th>Customer Name</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Doctor</th>
+    <th>Tests</th>
+    <th>Amount</th>
+    <th>Date Created</th>
+    <th>Date Updated</th>
+  </tr>
+  
+  {% for i in cus %}
+  <tr>
+    <td>{{i.billid.id}}</td>
+    <td>{{i.billid.customer_name}}</td>
+    <td>{{i.billid.customer_id.age}}</td>
+    <td>{{i.billid.customer_id.gender}}</td>
+    <td>{{i.billid.doc_name}}</td>
+    <td>
+    {% for i,j in i.test.items %}
+{% for t in tst %}
+{% if t.id == j|add:"0" %}
+    {{t.Test_name}}
+    {% endif %} <br>
+{% endfor %}
+    {% endfor %}
+  </td>
+    <td>{{i.billid.total_amount|floatformat:2}}</td>
+    <td>{{i.billid.created_at}}</td>
+    <td>{{i.billid.updated_at}}</td>
+  </tr>
+  
+  {% endfor %}
+</table>
+
+</body>
+</html>
+

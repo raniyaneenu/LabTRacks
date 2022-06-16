@@ -1,0 +1,58 @@
+{% include 'nav.html' %}
+
+<html>
+    <head>
+        <title>AutoComplete</title>
+        <script src=  
+    "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+        </script>  
+        
+        <script src=  
+    "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+        </script>  
+        
+        <link href=  
+    "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+            rel="stylesheet" type="text/css" />  
+    </head>
+    <body>
+
+<form method="post">
+    {% csrf_token %}
+    
+<input type="text" name="docnm" id="doc" placeholder="Doctor Name" list="doctors">
+<datalist id="doctors">
+  {% for i in dc %} 
+<option value="{{i.id}}">{{i.Doc_Name}} : {{i.Doc_Department}}</option>
+  {% endfor %}
+</datalist>
+
+<br><br><br>
+
+
+<input type="text" name="hospnm" id="hos" placeholder="Hospital Name" list="hosp">
+
+<datalist id="hosp">
+  {% for i in hs %} 
+<option value="{{i.id}}">{{i.Hospital_Name}} : {{i.Hospital_Address}}</option>
+  {% endfor %}
+</datalist>
+<br><br><br>
+
+       
+   
+ 
+<br>
+<input type="submit" value="Apply Hospital" >
+</form>
+<div>
+  <br><br>
+      {% for i in messages %} 
+<h4 style="color:red;">{{i}}</h4> 
+{% endfor %}
+  
+</div>
+  
+    
+</body>
+</html>

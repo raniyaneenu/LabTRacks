@@ -1,0 +1,56 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Doctors List</h2>
+
+<table>
+  <tr>
+      <th>Id No: </th>
+    <th>Hospital Name</th>
+    <th>Hospital Address</th>
+    <th>Edit</th>
+    <th>Date Created</th>
+    <th>Date Updated</th>
+  </tr>
+  
+  {% for i in hos %}
+  <tr>
+    <td>{{i.id}}</td>
+    <td>{{i.Hospital_Name}}</td>
+    <td>{{i.Hospital_Address}}</td>
+    <td><a href="{% url 'hospital_edit' i.id %}"><Button>Edit</Button></a></td>
+
+    <td>{{i.created_at}}</td>
+    <td>{{i.updated_at}}</td>
+
+{% endfor %}
+  </tr>
+  
+
+</table>
+
+</body>
+</html>
+

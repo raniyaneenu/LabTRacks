@@ -1,0 +1,320 @@
+{% include 'nav.html' %}
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles/style.css' %}">
+
+    <title>Lab Tracks</title>
+</head>
+
+<body>
+    <div class="bills-main">
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'assets/icons/circle-left-solid.svg' %}" width="150" height="70" alt="hidreamz">
+            </a>
+            <div>
+                <h3 class="text-center mb-3">Billing</h3>
+            </div>
+            <!-- <a class="navbar-brand" href="#"> -->
+            <div class="d-flex align-items-center">
+
+                <div>
+                    <p class="mb-0 text-right">Receipt No: BILL00012</p>
+                    <p class="mb-0 text-right">Date: 02-06-2022 10:11 AM</p>
+                </div>
+                <img class="ml-3" src="{% static 'assets/images/logo.png' %}" width="150" height="70" alt="hidreamz">
+            </div>
+
+            <!-- </a> -->
+        </nav>
+        <div class="container my-3">
+<form method="post">
+    {% csrf_token %}
+            <div class="customer-details">
+                <div class="row">
+                    <div class="col-4">
+                        <div class=" row">
+                            <label class="col-3 col-lg-4 col-form-label" for="customerName">Customer</label>
+                            <div class="col-9 col-lg-8">
+                                <input type="text" class="form-control" id="cust" placeholder="Customer Name" list="customer" name="customer">
+                                
+                                <datalist id="customer">
+                                    {% for i in cs %} 
+                                    <option value="{{i.id}}"><b>{{i.name}} : {{i.phone}}</b></option>
+                                    {% endfor %}
+                                </datalist>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-2">
+                        <div class=" row">
+                            <label class="col-3 col-lg-4 col-form-label" for="age">Age</label>
+                            <div class="col-9 col-lg-8">
+                                <input type="text" class="form-control" id="age" placeholder="Age" name="age">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-4 mt-2">
+                        <div class=" d-flex align-items-center">
+                            <!-- <label class="col-3 col-lg-4 col-form-label" for="gender">Gender</label> -->
+                            <!-- <div class="col-9 col-lg-8"> -->
+                            <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptionsgender" id="genderRadioM" value="option1">
+                            <label class="form-check-label" for="genderRadioM">Male</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptionsgender" id="genderRadioF"
+                                    value="option2">
+                                <label class="form-check-label" for="genderRadioF">Female</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptionsgender" id="genderRadioO"
+                                    value="option3">
+                                <label class="form-check-label" for="genderRadioO">Other</label>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+
+
+                    <div class="col-2">
+                        <div class="form-check form-check-inline mt-2">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" name="child">
+                            <label class="form-check-label" for="inlineCheckbox1">Is Child?</label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class=" row">
+                            <label class="col-3 col-lg-4 col-form-label" for="mobile">Mobile</label>
+                            <div class="col-9 col-lg-8">
+                                <input type="text" class="form-control" id="mobile" placeholder="Mobile" name="mob">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class=" row">
+                            <label class="col-3 col-lg-4 col-form-label" for="email">Email</label>
+                            <div class="col-9 col-lg-8">
+                                <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class=" row">
+                            <label class="col-4 col-form-label">Address</label>
+                            <div class="col-8 p-0">
+                                <textarea class="form-control w-100" rows="1" draggable="false" id="address" name="address"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class=" row">
+                            <label class="col-3 col-lg-4 col-form-label" for="doctorName">Doctor</label>
+                            <div class="col-9 col-lg-8">
+                                <input type="text" class="form-control" id="doctorName" placeholder="Doctor Name" list="doctors" name="doctor">
+                                <datalist id="doctors">
+                                    {% for i in dc %}
+                                    <option value="{{i.id}}"><b>{{i.Doc_Name}}</b></option>
+                                    {% endfor %}
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-4">
+                        <div class=" row">
+                            <label class="col-3 col-lg-4 col-form-label" for="hospitalName">Hospital</label>
+                            <div class="col-9 col-lg-8">
+                                <input type="text" class="form-control" id="hospitalName" placeholder="Hospital Name" list="Hospital" name="hospital">
+                                <datalist id="Hospital">
+                                    {% for i in hs %}
+                                    <option value="{{i.id}}"><b>{{i.Hospital_Name}} : {{i.Hospital_Address}}</b></option>
+                                    {% endfor %}
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <script>
+                document.getElementById("cust").onchange = function() {myFunction()};
+                
+                function myFunction() {
+                  var x = document.getElementById("cust");
+              
+                  var y=document.getElementById("age");
+                  var m=document.getElementById("mobile");
+                  var e=document.getElementById("email");
+                  var ad=document.getElementById("address");
+                  var gn=document.getElementById("")
+              
+                  {% for c in cs %}
+               
+              if ("{{c.id}}" == x.value){
+             
+                y.value="{{c.age}}";
+                m.value="{{c.phone}}";
+                e.value="{{c.email}}";
+                ad.value="{{c.address}}";
+              }
+              if("{{c.gender}}" == 'M'){
+                document.getElementById("genderRadioM").checked=true;
+              }
+              else if("{{c.gender}}" == 'F'){
+                document.getElementById("genderRadioF").checked=true;
+              }
+              else if("{{c.gender}}" == 'T'){
+                document.getElementById("genderRadioO").checked=true;
+              }
+                  {% endfor %}
+                }
+                </script>
+            <div class="items mt-3">
+                <table class="table table-bordered" id="myTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sl No</th>
+                            <th scope="col">Item Code</th>
+                            <th scope="col">Item Description</th>
+                            <th scope="col">Sample Info</th>
+                            <th scope="col">Discount</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <form>
+                    <tbody>
+                   
+                      
+                    </tbody>
+                
+                </table>
+            </div>
+            <div class="add-bill-items my-3">
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="">
+                        <label for="addBillItem">Add Item: &nbsp;</label>
+                    </div>
+                    
+                    <div class="">
+                        
+                        <input type="text" list="namelist" onchange="tableAddRow()" id="addBillItem" class="form-control" placeholder="Add Bill Item">
+         
+                        <datalist id="namelist">
+                            {% for i in t %} 
+                                <option value="{{i.id}}">
+                                <b> {{i.Test_name}} : {{i.Test_price}}</b>
+                                </option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+            <div class="bill-total my-3">
+                <div class="d-flex justify-content-end">
+                    <div class="">
+                        <h5>Bill Total:&nbsp;</h5>
+                    </div>
+                    <div class="">
+                        <h5 id="totalPricebill"> </h5>
+                        <br><br><br>
+                        
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center mt-3">
+           
+                <input type="submit" value="save"></button>
+      
+         </form>
+         
+    </div>
+    </div>
+    <script>
+        var tot=0
+        function tableAddRow() {
+            
+            var itm=document.getElementById("addBillItem");
+          var table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
+
+          var row = table.insertRow(table.rows.length);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          var cell5 = row.insertCell(4);
+          var cell6 = row.insertCell(5);
+          var cell7 = row.insertCell();
+        
+          {% for i in t %} 
+      
+          if("{{i.id}}"==itm.value){
+        cell1.innerHTML = row.rowIndex;
+        cell2.innerHTML = `<input class="w-50" type="text" value="{{i.id}}" name="id">`;
+        cell3.innerHTML = `<input class="w-50" type="text" value="{{i.Test_name}}" name="name">`;
+        cell4.innerHTML = `<input class="w-50" type="text" value="{{i.speciment_det}}" name="specimen">`;
+        cell5.innerHTML = ` <input class="w-50" type="text" placeholder="discount" name="discount" id="discount" onchange="discadd()" value="0">`;
+        cell6.innerHTML = `<input class="w-50" type="text" value="{{i.Test_price}}" name="price">`;
+        cell7.innerHTML = "delt";
+        tot=tot + Number("{{i.Test_price}}");
+          }
+      {% endfor %}
+  
+ document.getElementById("totalPricebill").innerHTML=tot;
+        }
+ 
+        </script>
+  
+
+
+       
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        // Run processing scripts here
+    </script>
+
+
+  <div>
+    <br><br>
+    {% for i in messages %} 
+<h2 style="color: red;">{{i}}</h2>
+    {% endfor %}
+</div>
+
+</body>
+
+</html>

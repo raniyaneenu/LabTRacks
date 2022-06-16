@@ -1,0 +1,69 @@
+{% include 'nav.html' %}
+
+<html>
+    <head>
+<style>
+    table, th, td {
+  border: 1px solid black;
+  padding: 30px;
+  border-collapse: collapse;
+}
+</style>
+
+    </head>
+    <body>
+        <table>
+            <thead>
+              
+                <th>TestId</th>
+                <th>Test Name</th>
+                <th>Price</th>
+                <th>Discount</th>
+       
+             
+            </thead>
+       
+            {% for i,j in bill.test.items %}
+            
+            <tr>
+              
+               {% for p in test %}
+               {% if p.id == j|add:"0" %}
+                <td>{{j}}</td>
+                <td>{{p.Test_name}}</td>
+                <td>{{p.Test_price}}</td>
+
+                {% for r,s in bill.discount.items %} 
+
+                {% if r|add:"0" == p.id %}
+
+                <td>{{s}}</td>
+
+                {% endif %}
+                {% endfor %}
+
+                {% endif %}
+                {% endfor %}
+             
+            </tr>
+            {% endfor %}
+        </table>
+        <div>
+            <br><br>
+            <h4>Total: {{cus.amount|floatformat:2}}</h4>
+            <br><br>
+            <h2>Discount Total: {{cus.discount_total|floatformat:2}}</h2>
+            <br><br><h3>Pending: {{cus.total_amount|floatformat:2}}</h3>
+            <br><br>
+            {% for i in messages %} 
+<h2 style="color: red;">{{i}}</h2>
+            {% endfor %}
+        </div>
+     {% if bill.id %}
+     <td><a href="{% url 'LabTracksBillPrint' bill.id %}"> <Button>Edit Bill</Button></a></td>
+     {% else %}
+     <td></td>
+
+{% endif %}
+    </body>
+</html>

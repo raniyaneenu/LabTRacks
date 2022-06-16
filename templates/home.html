@@ -1,0 +1,49 @@
+{% include 'nav.html' %}
+{% block content %} 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Test Category </button>
+    <ul class="dropdown-menu">
+      <li><a href="{% url 'category' %}">Add Category</a></li>
+      <li><a href="{% url 'CategoryList' %}">View Category</a></li>
+    </ul>
+  </div>
+<br><br><br>
+  
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Test</button>
+    <ul class="dropdown-menu">
+      <li><a href="{% url 'test' %}">Add Test</a></li>
+      <li><a href="{% url 'TestList' %}">View Test</a></li>
+    </ul>
+  </div>
+  <br><br><br>
+
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Source </button>
+    <ul class="dropdown-menu">
+      <li><a href="{% url 'Doctor' %}">Add Doctor</a></li>
+      <li><a href="{% url 'DoctorsList' %}">View Doctor</a></li>
+      <li><a href="{% url 'Hospital' %}">Add Hospital</a></li>
+      <li><a href="{% url 'HospitalList' %}">View Hospital</a></li>
+      <li><a href="{% url 'DoctorHosp' %}">Add Doctor to hospital</a></li>
+    </ul>
+  </div>
+  <br><br><br>
+
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Bill </button>
+    <ul class="dropdown-menu">
+      <li><a href="{% url 'LabTracksBilling' %}">Create Bill</a></li>
+      <li><a href="{% url 'ViewBill' %}">Bill List</a></li>
+    </ul>
+  </div>
+  <br><br><br>
+
+
+
+{% endblock %}

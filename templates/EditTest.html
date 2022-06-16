@@ -1,0 +1,32 @@
+<form method="post" >
+    
+    {% csrf_token %}
+    <label>Test Name: </label>
+{{tst.Test_name}}
+<br><br>
+<label>Price: </label>
+{{tst.Test_price}}
+<br><br>
+<label>Specimen Det:</label>
+{{tst.speciment_det}}
+<br><br>
+
+<label for="">normal_range</label>
+{{tst.normal_range}}
+<br><br>
+
+<label for="">duration</label>
+{{tst.duration}}
+<br><br>
+
+<label for="">categ</label>
+<input type="text" name="categ" id="" list="cat" required>
+<datalist id="cat">
+    {% for i in ct %} 
+    <option value="{{i.id}}">{{i.name}}</option>
+    {% endfor %}
+</datalist>
+<br><br>
+
+<button type="submit">Appy Changes</button>
+    </form>

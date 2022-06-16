@@ -1,0 +1,69 @@
+{% include 'nav.html' %}
+
+<html>
+    <head>
+        <title>AutoComplete</title>
+        <script src=  
+    "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+        </script>  
+        
+        <script src=  
+    "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+        </script>  
+        
+        <link href=  
+    "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+            rel="stylesheet" type="text/css" />  
+    </head>
+    <body>
+
+<form method="post">
+    {% csrf_token %}
+    
+<input type="text" name="categ" id="cated" placeholder="Select Category" list="category">
+<datalist id="category">
+{% for i in categ %} 
+
+<option value="{{i.id}}">{{i.name}}</option>
+
+{% endfor %} 
+</datalist>
+<br><br>
+<input type="text" name="testnm" id="test" placeholder="test Name" list="test">
+
+<datalist id="test">
+
+  {% for i in dc %} 
+<option value="{{i.id}}">{{i.Doc_Name}} : {{i.Doc_Department}}</option>
+  {% endfor %}
+
+</datalist>
+
+<br><br><br>
+
+
+<input type="text" name="testpr" id="pr" placeholder="Test price" >
+
+<br><br><br>
+
+<input type="text" name="spec" placeholder="specimen">
+<br><br><br>
+<input type="text" name="nor" placeholder="Normal Range">
+<br><br><br>
+
+<input type="text" name="dur" placeholder="duration">
+   
+ 
+<br><br>
+<input type="submit" value="Add Test" >
+</form>
+<div>
+    <br><br>
+        {% for i in messages %} 
+ <h4 style="color:red;">{{i}}</h4> 
+  {% endfor %}
+    
+</div>
+    
+</body>
+</html>

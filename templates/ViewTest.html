@@ -1,0 +1,63 @@
+{% include 'nav.html' %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Doctors List</h2>
+
+<table>
+  <tr>
+      <th>Id No: </th>
+      <th>Category</th>
+    <th>Test Name</th>
+    <th>Price</th>
+    <th>Specimen Detected</th>
+    <th>Normal Range</th>
+    <th>Duration</th>
+    <td>Edit</td>
+    <th>Date Created</th>
+    <th>Date Updated</th>
+  </tr>
+  
+  {% for i in tst %}
+  <tr>
+    <td>{{i.id}}</td>
+    <td>{{i.categ.name}}</td>
+    <td>{{i.Test_name}}</td>
+    <th>{{i.Test_price}}</th>
+    <th>{{i.speciment_det}}</th>
+    <th>{{i.normal_range}}</th>
+    <th>{{i.duration}}</th>
+    <th><a href="{% url 'test_edit' i.id %}"><button>Edit</button></a></th>
+    <td>{{i.created_at}}</td>
+    <td>{{i.updated_at}}</td>
+
+{% endfor %}
+  </tr>
+  
+
+</table>
+
+</body>
+</html>
+
